@@ -1,0 +1,170 @@
+/* variables */
+$color: salmon;
+$fc: #eee;
+$dark: #191919;
+$bg: #212121;
+$gap: 50px;
+
+/**/
+
+/* base */
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+body {
+  background-color: $bg;
+  color: $fc;
+  font-family: sans-serif;
+  line-height: 1.4;
+
+  display: grid;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+  gap: $gap;
+
+  @media (min-width: 768px) {
+    grid-template-areas:
+      "header header"
+      "main  aside"
+      "footer footer";
+  }
+  @media (min-width: 992px) {
+    grid-template-columns: 1fr 800px 1fr;
+    gap: $gap * 2;
+    grid-template-areas:
+      "header header header"
+      ". main ."
+      "footer footer footer";
+  }
+}
+
+a{
+  color: $color;
+  text-decoration: none;
+}
+.header {
+  grid-area: header;
+}
+.main {
+  grid-area: main;
+  justify-self: center;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+.header,
+.footer{
+  text-align: center;
+  background-color: $dark;
+  padding: $gap;
+}
+
+
+/*styles for game*/
+
+.memory{
+  position: relative;
+  background-color: $dark;
+  padding: $gap;
+  border-radius: 10px;
+}
+
+.memory-bar{
+  // background: #111;
+  // padding: 15px;
+}
+
+.memory-level{
+  
+}
+
+.memory-table{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+.memory-card{
+  background-color: $bg;
+  border-radius: 15px;
+  width:  150px;
+  height: 150px;
+
+  transition: background-color ease .2s, opacity ease .2s .5s;
+  cursor: pointer;
+  &:hover{
+    background-color: #111;
+  }
+}
+
+.memory-message{
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  padding: $gap/2 $gap;
+
+  background-color: $dark;
+}
+
+.score-outer{
+  margin: 0 0 5px;
+}
+
+.memory-level,
+.btn{
+  padding: 5px 15px;
+  font-size: .8em;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  border-radius: 15px;
+  text-align: center;
+  font-weight: 700;
+  transition: ease .2s;
+  cursor: pointer;
+}
+
+.btn{
+  border: unset;
+  color: $fc;
+  background-color: $color;
+  &:hover{
+    background-color: lightsalmon;
+  }
+}
+.memory-message{
+  transition: ease .2s;
+}
+
+.hidden{
+  opacity: 0;
+  cursor: normal;
+  pointer-events: none;
+}
+
+/* card classes*/
+
+$colors:
+  pink,
+  peachpuff,
+  palevioletred,
+  lightsalmon,
+  lightcoral;
+
+  @each $colorItem in $colors {
+    .#{$colorItem} {
+      background-color: $colorItem !important;
+    }
+  }
